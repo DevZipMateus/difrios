@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demonstração de Vitrine — DiFrios</title>
+  <meta name="description" content="Vitrine online DiFrios — conheça nossos produtos e faça seu pedido.">
+
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .vitrine-wrapper {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .vitrine-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header id="header" style="position:fixed;top:0;left:0;width:100%;z-index:900;">
+    <div class="container header-inner">
+      <a href="index.html" class="logo-link" aria-label="DiFrios — início">
+        <img src="images/logo.png" alt="Logo DiFrios Distribuidora" class="header-logo">
+        <span class="brand-name">DiFrios</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html#inicio">Início</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="index.html#produtos">Produtos</a></li>
+          <li><a href="index.html#clientes">Quem atendemos</a></li>
+          <li><a href="index.html#diferenciais">Diferenciais</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+          <li><a href="vitrine.html" class="active">Vitrine</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== MENU MOBILE ===== -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="Menu mobile" aria-hidden="true">
+    <ul>
+      <li><a href="index.html#inicio"       class="mobile-link">Início</a></li>
+      <li><a href="index.html#sobre"        class="mobile-link">Sobre</a></li>
+      <li><a href="index.html#produtos"     class="mobile-link">Produtos</a></li>
+      <li><a href="index.html#clientes"     class="mobile-link">Quem atendemos</a></li>
+      <li><a href="index.html#diferenciais" class="mobile-link">Diferenciais</a></li>
+      <li><a href="index.html#contato"      class="mobile-link">Contato</a></li>
+      <li><a href="vitrine.html"            class="mobile-link">Vitrine</a></li>
+    </ul>
+  </nav>
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- ===== VITRINE IFRAME ===== -->
+  <div class="vitrine-wrapper">
+    <iframe
+      src="http://furinhochic.com.br/"
+      title="Demonstração de Vitrine DiFrios"
+      scrolling="no"
+    ></iframe>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Ajusta a altura do iframe dinamicamente
+    function ajustarIframe() {
+      const wrapper = document.querySelector('.vitrine-wrapper');
+      if (wrapper) {
+        wrapper.style.height = (window.innerHeight - 80) + 'px';
+      }
+    }
+    ajustarIframe();
+    window.addEventListener('resize', ajustarIframe);
+  </script>
+</body>
+</html>

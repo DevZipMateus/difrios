@@ -1128,4 +1128,23 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35); }
   .clientes-grid { grid-template-columns: 1fr; gap: 8px; }
   .cliente-card { padding: 18px 16px; }
   .mvv-card { padding: 16px 14px; }
+  .vitrine-iframe-wrapper iframe { height: 1400px; }
+}
+
+
+/* ===== VITRINE ===== */
+.vitrine-section {
+  padding-bottom: 0;
+}
+
+.vitrine-iframe-wrapper {
+  width: 100%;
+}
+
+.vitrine-iframe-wrapper iframe {
+  width: 100%;
+  height: calc(100vh - 80px - 63px);
+  min-height: 500px;
+  border: none;
+  display: block;
 }
