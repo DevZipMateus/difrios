@@ -832,6 +832,9 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35); }
   width: auto;
   align-self: flex-start;
   object-fit: contain;
+  background: #fff;
+  border-radius: 50%;
+  padding: 3px;
 }
 .contato-slogan-footer div {
   display: flex;
