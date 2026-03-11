@@ -29,30 +29,38 @@ window.addEventListener('scroll', () => {
 
 // ── 3. HAMBURGER MENU ───────────────────────────
 const hamburger  = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenu = document.getElementById('mobileNav');
+const overlay    = document.getElementById('overlay');
+
+function openMenu() {
+  mobileMenu.classList.add('open');
+  hamburger.classList.add('open');
+  hamburger.setAttribute('aria-expanded', 'true');
+  mobileMenu.setAttribute('aria-hidden', 'false');
+  if (overlay) overlay.classList.add('show');
+}
+
+function closeMenu() {
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  if (overlay) overlay.classList.remove('show');
+}
 
 hamburger.addEventListener('click', () => {
-  const isOpen = mobileMenu.classList.contains('open');
-  mobileMenu.classList.toggle('open', !isOpen);
-  hamburger.classList.toggle('open', !isOpen);
-  hamburger.setAttribute('aria-expanded', String(!isOpen));
-  mobileMenu.setAttribute('aria-hidden', String(isOpen));
+  mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
 });
 
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    mobileMenu.setAttribute('aria-hidden', 'true');
-  });
+document.querySelectorAll('.mobile-nav a').forEach(link => {
+  link.addEventListener('click', closeMenu);
 });
+
+if (overlay) overlay.addEventListener('click', closeMenu);
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
-    mobileMenu.classList.remove('open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
+    closeMenu();
     hamburger.focus();
   }
 });
