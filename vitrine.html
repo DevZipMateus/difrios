@@ -26,7 +26,7 @@
       top: 80px;
       left: 0;
       right: 0;
-      bottom: 0;
+      height: calc(100vh - 80px - 63px);
     }
 
     .vitrine-wrapper iframe {
@@ -80,9 +80,9 @@
   <div class="overlay" id="overlay" aria-hidden="true"></div>
 
   <!-- ===== VITRINE IFRAME ===== -->
-  <div class="vitrine-wrapper">
+  <div class="vitrine-wrapper" id="vitrineWrapper">
     <iframe
-      src="http://furinhochic.com.br/"
+      src="https://difrios.egestor.com.br/vitrine/"
       title="Demonstração de Vitrine DiFrios"
       scrolling="no"
     ></iframe>
@@ -90,11 +90,11 @@
 
   <script src="script.js"></script>
   <script>
-    // Ajusta a altura do iframe dinamicamente
+    // Altura = 100vh - 80px (header) - 63px (badge)
     function ajustarIframe() {
-      const wrapper = document.querySelector('.vitrine-wrapper');
+      const wrapper = document.getElementById('vitrineWrapper');
       if (wrapper) {
-        wrapper.style.height = (window.innerHeight - 80) + 'px';
+        wrapper.style.height = (window.innerHeight - 80 - 63) + 'px';
       }
     }
     ajustarIframe();
