@@ -158,7 +158,7 @@ document.querySelectorAll('.btn, .btn-hero, .btn-contato, .btn-wpp').forEach(btn
 
 // ── 8. TILT 3D NOS CARDS ────────────────────────
 if (!('ontouchstart' in window)) {
-  document.querySelectorAll('.produto-card, .diferencial-card').forEach(card => {
+  document.querySelectorAll('.produto-card, .dif-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect  = card.getBoundingClientRect();
       const cx    = rect.left + rect.width  / 2;
@@ -188,7 +188,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll(
-  '.produto-card, .diferencial-card, .cliente-card, ' +
+  '.produto-card, .dif-card, .cliente-card, ' +
   '.sobre-texto, .mvv-card, ' +
   '.contato-card, .contato-slogan-card, ' +
   '.section-tag, .section-title, .section-desc'
