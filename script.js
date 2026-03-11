@@ -177,11 +177,10 @@ if (!('ontouchstart' in window)) {
 
 // ── 9. REVEAL NO SCROLL (IntersectionObserver) ──
 const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
       const el = entry.target;
-      const delay = el.dataset.delay || (i * 80);
-      setTimeout(() => el.classList.add('visible'), Number(delay));
+      setTimeout(() => el.classList.add('visible'), 60);
       revealObserver.unobserve(el);
     }
   });
@@ -192,9 +191,8 @@ document.querySelectorAll(
   '.sobre-texto, .mvv-card, ' +
   '.contato-card, .contato-slogan-card, ' +
   '.section-tag, .section-title, .section-desc'
-).forEach((el, i) => {
+).forEach(el => {
   el.classList.add('reveal');
-  el.dataset.delay = i * 60;
   revealObserver.observe(el);
 });
 
