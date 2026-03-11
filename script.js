@@ -189,7 +189,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll(
   '.produto-card, .diferencial-card, .cliente-card, ' +
-  '.sobre-text, .sobre-card, .mvv-card, ' +
+  '.sobre-texto, .mvv-card, ' +
   '.contato-card, .contato-slogan-card, ' +
   '.section-tag, .section-title, .section-desc'
 ).forEach((el, i) => {
