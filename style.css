@@ -1143,8 +1143,7 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35); }
 
 .vitrine-iframe-wrapper iframe {
   width: 100%;
-  height: calc(100vh - 80px - 63px);
-  min-height: 500px;
+  height: 1400px;
   border: none;
   display: block;
 }
