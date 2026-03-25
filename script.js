@@ -224,3 +224,186 @@ window.addEventListener('load', () => {
     setTimeout(() => el.classList.add('active'), 400 + i * 200);
   });
 });
+
+
+// ── 12. CURSOR GLOW EFFECT ──────────────────────
+const cursorGlow = document.createElement('div');
+cursorGlow.className = 'cursor-glow';
+cursorGlow.style.cssText = `
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(0, 129, 198, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 0 15px rgba(0, 129, 198, 0.4), inset 0 0 15px rgba(0, 129, 198, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+`;
+document.body.appendChild(cursorGlow);
+
+document.addEventListener('mousemove', (e) => {
+  cursorGlow.style.left = (e.clientX - 15) + 'px';
+  cursorGlow.style.top = (e.clientY - 15) + 'px';
+  cursorGlow.style.opacity = '1';
+}, { passive: true });
+
+document.addEventListener('mouseleave', () => {
+  cursorGlow.style.opacity = '0';
+}, { passive: true });
+
+
+// ── 13. EFEITO PARALLAX SUAVE NO SCROLL ────────
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  document.querySelectorAll('[data-parallax]').forEach(el => {
+    const speed = el.dataset.parallax || 0.5;
+    el.style.transform = `translateY(${scrollY * speed}px)`;
+  });
+}, { passive: true });
+
+
+// ── 14. ANIMAÇÃO DE ENTRADA NOS CARDS ──────────
+const cardObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animation = `slideInCard 0.6s ease-out forwards`;
+      cardObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.produto-card, .cliente-card, .dif-card').forEach((card, i) => {
+  card.style.animationDelay = (i * 0.08) + 's';
+  cardObserver.observe(card);
+});
+
+
+// ── 15. EFEITO DE GLOW NOS BOTÕES AO HOVER ─────
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('mousemove', function(e) {
+    const rect = this.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    this.style.setProperty('--mouse-x', x + 'px');
+    this.style.setProperty('--mouse-y', y + 'px');
+  });
+
+  btn.addEventListener('mouseleave', function() {
+    this.style.removeProperty('--mouse-x');
+    this.style.removeProperty('--mouse-y');
+  });
+});
+
+
+// ── 16. NÚMERO ANIMADO AO ENTRAR NA VIEWPORT ──
+const numberObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.counted) {
+      entry.target.dataset.counted = 'true';
+      const target = parseInt(entry.target.dataset.target, 10);
+      const duration = 1.5;
+      const start = performance.now();
+
+      const animate = (now) => {
+        const elapsed = (now - start) / 1000;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeValue = 1 - Math.pow(1 - progress, 3);
+
+        entry.target.textContent = Math.floor(easeValue * target);
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+
+      requestAnimationFrame(animate);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-target]').forEach(el => numberObserver.observe(el));
+
+
+// ── 17. TRANSIÇÃO SUAVE ENTRE SEÇÕES ───────────
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('section').forEach(section => {
+  section.style.opacity = '0';
+  section.style.transform = 'translateY(10px)';
+  section.style.transition = 'all 0.8s ease-out';
+  sectionObserver.observe(section);
+});
+
+
+// ── 18. EFEITO DE PULSAÇÃO NOS ÍCONES ───────────
+const createPulseEffect = () => {
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideInCard {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 129, 198, 0.4),
+                    0 0 20px rgba(0, 129, 198, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(0, 129, 198, 0.8),
+                    0 0 40px rgba(0, 129, 198, 0.4);
+      }
+    }
+  `;
+  document.head.appendChild(style);
+};
+
+createPulseEffect();
+
+
+// ── 19. HOVER EFFECT NOS CARDS COM SOMBRA ──────
+document.querySelectorAll('.contato-card, .contato-slogan-card').forEach(card => {
+  card.addEventListener('mouseenter', function() {
+    this.style.boxShadow = '0 20px 60px rgba(0, 129, 198, 0.25)';
+    this.style.transform = 'translateY(-8px)';
+  });
+
+  card.addEventListener('mouseleave', function() {
+    this.style.boxShadow = '';
+    this.style.transform = '';
+  });
+});
+
+
+// ── 20. ANIMAÇÃO AO CARREGAR A PÁGINA ────────────
+window.addEventListener('load', () => {
+  document.body.style.animation = 'fadeInBody 0.8s ease-out';
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fadeInBody {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+});
