@@ -206,7 +206,7 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35); }
   min-height: 100vh;
   background:
     linear-gradient(rgba(0, 40, 80, 0.52), rgba(0, 60, 110, 0.52)),
-    url('images/bg-hero.jpg') center / cover no-repeat;
+    url('images/bg-hero-v2.jpg') center / cover no-repeat;
   background-attachment: scroll, fixed;
   display: flex;
   align-items: center;
