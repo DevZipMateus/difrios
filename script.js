@@ -209,32 +209,6 @@ window.addEventListener('load', () => {
 });
 
 
-// ── 12. CURSOR GLOW EFFECT ──────────────────────
-const cursorGlow = document.createElement('div');
-cursorGlow.className = 'cursor-glow';
-cursorGlow.style.cssText = `
-  position: fixed;
-  width: 30px;
-  height: 30px;
-  border: 2px solid rgba(0, 129, 198, 0.6);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  box-shadow: 0 0 15px rgba(0, 129, 198, 0.4), inset 0 0 15px rgba(0, 129, 198, 0.1);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-`;
-document.body.appendChild(cursorGlow);
-
-document.addEventListener('mousemove', (e) => {
-  cursorGlow.style.left = (e.clientX - 15) + 'px';
-  cursorGlow.style.top = (e.clientY - 15) + 'px';
-  cursorGlow.style.opacity = '1';
-}, { passive: true });
-
-document.addEventListener('mouseleave', () => {
-  cursorGlow.style.opacity = '0';
-}, { passive: true });
 
 
 // ── 13. EFEITO PARALLAX SUAVE NO SCROLL ────────
