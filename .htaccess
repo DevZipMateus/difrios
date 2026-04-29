@@ -1,0 +1,6 @@
+# Desativa cache para imagens, CSS e JS
+<FilesMatch "\.(jpg|jpeg|png|gif|webp|css|js)$">
+  Header set Cache-Control "no-cache, no-store, must-revalidate"
+  Header set Pragma "no-cache"
+  Header set Expires "0"
+</FilesMatch>
