@@ -164,23 +164,6 @@ document.querySelectorAll('.btn, .btn-hero, .btn-contato, .btn-wpp').forEach(btn
 });
 
 
-// ── 8. TILT 3D NOS CARDS ────────────────────────
-if (!('ontouchstart' in window)) {
-  document.querySelectorAll('.produto-card, .dif-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const rect  = card.getBoundingClientRect();
-      const cx    = rect.left + rect.width  / 2;
-      const cy    = rect.top  + rect.height / 2;
-      const dx    = (e.clientX - cx) / (rect.width  / 2);
-      const dy    = (e.clientY - cy) / (rect.height / 2);
-      card.style.transform = `perspective(800px) rotateY(${dx * 8}deg) rotateX(${-dy * 8}deg) translateZ(6px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-}
 
 
 // ── 9. REVEAL NO SCROLL (IntersectionObserver) ──
